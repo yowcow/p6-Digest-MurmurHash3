@@ -6,7 +6,7 @@ all: %DESTDIR% %DESTDIR%/libmurmurhash%SO%
 	mkdir -p %DESTDIR%
 
 %DESTDIR%/libmurmurhash%SO%: %DESTDIR%/libmurmurhash%O%
-	%LD% %LDSHARED% %LDFLAGS% %LIBS% %LDUSR%pam %LDOUT%%DESTDIR%/libmurmurhash%SO% %DESTDIR%/libmurmurhash%O%
+	%LD% %LDSHARED% %LDFLAGS% %LIBS% %LDOUT%%DESTDIR%/libmurmurhash%SO% %DESTDIR%/libmurmurhash%O%
 
 %DESTDIR%/libmurmurhash%O%: libmurmurhash.c
 	%CC% -c %CCSHARED% %CCFLAGS% %CCOUT% %DESTDIR%/libmurmurhash%O% libmurmurhash.c
