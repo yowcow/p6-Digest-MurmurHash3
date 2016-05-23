@@ -1,0 +1,22 @@
+.PHONY: clean test
+
+all: %DESTDIR% %DESTDIR%/libmurmurhash%SO%
+
+%DESTDIR%:
+	mkdir -p %DESTDIR%
+
+%DESTDIR%/libmurmurhash%SO%: %DESTDIR%/libmurmurhash%O%
+	%LD% %LDSHARED% %LDFLAGS% %LIBS% %LDUSR%pam %LDOUT%%DESTDIR%/libmurmurhash%SO% %DESTDIR%/libmurmurhash%O%
+
+%DESTDIR%/libmurmurhash%O%: libmurmurhash.c
+	%CC% -c %CCSHARED% %CCFLAGS% %CCOUT% %DESTDIR%/libmurmurhash%O% libmurmurhash.c
+
+test: %DESTDIR%/libmurmurhash-test
+	./%DESTDIR%/libmurmurhash-test
+	cd ../ && prove
+
+%DESTDIR%/libmurmurhash-test: all
+	%LD% %CCFLAGS% %CCOUT% %DESTDIR%/libmurmurhash-test libmurmurhash-test.c
+
+clean:
+	-rm -rf %DESTDIR%

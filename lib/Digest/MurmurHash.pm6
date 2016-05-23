@@ -1,6 +1,18 @@
 use v6;
+use LibraryMake;
+use NativeCall;
+
 unit class Digest::MurmurHash;
 
+sub library {
+    state $so;
+    $so = get-vars('')<SO> if not $so;
+    ~(%?RESOURCES{"libmurmurhash$so"});
+}
+
+our sub hoge(--> uint32)
+    is native(&library)
+    { * }
 
 =begin pod
 
