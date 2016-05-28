@@ -9,4 +9,4 @@ my %vars = get-vars($destdir);
 
 process-makefile('./src', %vars);
 
-say "Configure completed! You can now run '%vars<MAKE>' to build libmurmurhash.";
+say "Configure completed! You can now run '%vars<MAKE>' to build libmurmurhash3.";
