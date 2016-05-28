@@ -61,9 +61,23 @@ Digest::MurmurHash3 - MurmurHash3 impelementation
 
   use Digest::MurmurHash3;
 
+  my Buf $buf32 = murmurhash3_32($key, $seed);
+
+  my Buf $buf128 = murmurhash3_128($key, $seed);
+
 =head1 DESCRIPTION
 
 Digest::MurmurHash3 is a L<MurmurHash3|https://github.com/aappleby/smhasher> hashing algorithm implementation.
+
+=head1 METHODS
+
+=head2 murmurhash3_32(Str $key, uint32 $seed) returns Buf
+
+Calculates 32-bit hash, and returns as Buf.
+
+=head2 murmurhash3_128(Str $key, uint32 $seed) returns Buf
+
+Calculates 128-bit hash, and returns as Buf.
 
 =head1 AUTHOR
 

@@ -1,19 +1,36 @@
-[![Build Status](https://travis-ci.org/yowcow/p6-Digest-MurmurHash.svg?branch=master)](https://travis-ci.org/yowcow/p6-Digest-MurmurHash)
+[![Build Status](https://travis-ci.org/yowcow/p6-Digest-MurmurHash3.svg?branch=master)](https://travis-ci.org/yowcow/p6-Digest-MurmurHash3)
 
 NAME
 ====
 
-Digest::MurmurHash - blah blah blah
+Digest::MurmurHash3 - MurmurHash3 impelementation
 
 SYNOPSIS
 ========
 
-    use Digest::MurmurHash;
+    use Digest::MurmurHash3;
+
+    my Buf $buf32 = murmurhash3_32($key, $seed);
+
+    my Buf $buf128 = murmurhash3_128($key, $seed);
 
 DESCRIPTION
 ===========
 
-Digest::MurmurHash is ...
+Digest::MurmurHash3 is a [MurmurHash3](https://github.com/aappleby/smhasher) hashing algorithm implementation.
+
+METHODS
+=======
+
+murmurhash3_32(Str $key, uint32 $seed) returns Buf
+--------------------------------------------------
+
+Calculates 32-bit hash, and returns as Buf.
+
+murmurhash3_128(Str $key, uint32 $seed) returns Buf
+---------------------------------------------------
+
+Calculates 128-bit hash, and returns as Buf.
 
 AUTHOR
 ======
