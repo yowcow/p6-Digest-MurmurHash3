@@ -3,7 +3,7 @@
 NAME
 ====
 
-Digest::MurmurHash3 - MurmurHash3 impelementation
+Digest::MurmurHash3 - MurmurHash3 implementation for Perl 6
 
 SYNOPSIS
 ========
@@ -39,6 +39,8 @@ yowcow <yowcow@cpan.org>
 
 COPYRIGHT AND LICENSE
 =====================
+
+MurmurHash3 was written by [Austin Appleby](https://github.com/aappleby), and is released under MIT license.
 
 Copyright 2016 yowcow
 

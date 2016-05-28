@@ -9,7 +9,7 @@
     "LibraryMake",
     "NativeCall"
   ],
-  "description" : "MurmurHash3 impelementation",
+  "description" : "MurmurHash3 implementation for Perl 6",
   "name" : "Digest::MurmurHash3",
   "perl" : "6.c",
   "provides" : {

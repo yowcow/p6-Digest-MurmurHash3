@@ -55,7 +55,7 @@ our sub murmurhash3_128(Str:D $key, Int:D $seed --> Buf) is export {
 
 =head1 NAME
 
-Digest::MurmurHash3 - MurmurHash3 impelementation
+Digest::MurmurHash3 - MurmurHash3 implementation for Perl 6
 
 =head1 SYNOPSIS
 
