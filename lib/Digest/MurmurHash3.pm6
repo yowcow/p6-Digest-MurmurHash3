@@ -85,6 +85,8 @@ yowcow <yowcow@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
+MurmurHash3 was written by L<Austin Appleby|https://github.com/aappleby>, and is released under MIT license.
+
 Copyright 2016 yowcow
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
