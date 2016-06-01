@@ -14,8 +14,15 @@ all: %DESTDIR% %DESTDIR%/libmurmurhash3%SO%
 %DESTDIR%/libmurmurhash3%O%: libmurmurhash3.c
 	%CC% -c %CCSHARED% %CCFLAGS% %CCOUT% %DESTDIR%/libmurmurhash3%O% libmurmurhash3.c
 
-test: %DESTDIR%/libmurmurhash3%SO%
+test: %DESTDIR%/libmurmurhash3-test %DESTDIR%/libmurmurhash3%SO%
+	%DESTDIR%/libmurmurhash3-test
 	cd ../ && prove
+
+%DESTDIR%/libmurmurhash3-test: %DESTDIR%/MurmurHash3%O% %DESTDIR%/libmurmurhash3-test%O%
+	%CC% %CCSHARED% %CCFLAGS% %CCOUT% %DESTDIR%/libmurmurhash3-test %DESTDIR%/MurmurHash3%O% %DESTDIR%/libmurmurhash3-test%O%
+
+%DESTDIR%/libmurmurhash3-test%O%:
+	%CC% -c %CCSHARED% %CCFLAGS% %CCOUT% %DESTDIR%/libmurmurhash3-test%O% libmurmurhash3-test.c
 
 clean:
 	-rm -rf %DESTDIR%
