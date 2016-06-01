@@ -4,6 +4,8 @@ use NativeCall;
 
 unit class Digest::MurmurHash3;
 
+constant UINT32_MAX = 4294967295;
+
 sub library {
     state $so;
     $so = get-vars('')<SO> if not $so;
@@ -16,11 +18,11 @@ sub MurmurHash3_x86_32_i(Str, int32, uint32 --> uint32)
 sub MurmurHash3_x86_128(Str, int32, uint32, CArray[uint32])
     is native(&library) { * }
 
-sub sign-bit(Int:D $v, Int:D :$bit = 31 --> Int) {
-    # Negative value comes out even though type is uint32.
+our sub fix-sign-bit(Int:D $v --> Int) {
+    # Negative value comes out even though type is CArray[uint32].
     # To correctly manage bits, flag left most bit if sign is negative.
     $v.sign == -1
-        ?? (-1 * $v) +| (1 +< $bit)
+        ?? $v + 1 + UINT32_MAX
         !! $v;
 }
 
@@ -36,19 +38,25 @@ sub to-buf(*@hash --> Buf) {
     Buf.new(|@blocks);
 }
 
-our sub murmurhash3_32(Str:D $key, Int:D $seed --> Buf) is export {
-    my Int $result = MurmurHash3_x86_32_i($key, $key.chars, $seed);
-
-    to-buf(sign-bit($result, :bit(31)));
+our sub murmurhash3_32(Str:D $key, Int:D $seed --> Int) is export {
+    MurmurHash3_x86_32_i($key, $key.chars, $seed);
 }
 
-our sub murmurhash3_128(Str:D $key, Int:D $seed --> Buf) is export {
+our sub murmurhash3_32_hex(Str:D $key, Int:D $seed --> Buf) is export {
+    to-buf(murmurhash3_32($key, $seed));
+}
+
+our sub murmurhash3_128(Str:D $key, Int:D $seed --> Array[Int]) is export {
     my @hash := CArray[uint32].new;
     @hash[$_] = 0 for ^4;
 
     MurmurHash3_x86_128($key, $key.chars, $seed, @hash);
 
-    to-buf((sign-bit(@hash[$_], :bit(31)) for ^4));
+    Array[Int].new((fix-sign-bit(@hash[$_]) for ^4));
+}
+
+our sub murmurhash3_128_hex(Str:D $key, Int:D $seed --> Buf) is export {
+    to-buf(murmurhash3_128($key, $seed));
 }
 
 =begin pod
@@ -71,13 +79,23 @@ Digest::MurmurHash3 is a L<MurmurHash3|https://github.com/aappleby/smhasher> has
 
 =head1 METHODS
 
-=head2 murmurhash3_32(Str $key, uint32 $seed) returns Buf
+=head2 murmurhash3_32(Str $key, uint32 $seed) returns Int
+
+Calculates 32-bit hash, and returns as Int.
+
+=head2 MurmurHash3_32_hex(Str $key, uint32 $seed) returns Buf
 
 Calculates 32-bit hash, and returns as Buf.
+A hex string can be obtained with `.unpack("H4")`.
 
-=head2 murmurhash3_128(Str $key, uint32 $seed) returns Buf
+=head2 murmurhash3_128(Str $key, uint32 $seed) returns Array[Int]
+
+Calculates 128-bit hash, and returns as Array[Int] with length of 4.
+
+=head2 murmurhash3_128_hex(Str $key, uint32 $seed) returns Buf
 
 Calculates 128-bit hash, and returns as Buf.
+A hex string can be obtained with `.unpack("H16")`.
 
 =head1 AUTHOR
 

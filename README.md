@@ -22,15 +22,25 @@ Digest::MurmurHash3 is a [MurmurHash3](https://github.com/aappleby/smhasher) has
 METHODS
 =======
 
-murmurhash3_32(Str $key, uint32 $seed) returns Buf
+murmurhash3_32(Str $key, uint32 $seed) returns Int
 --------------------------------------------------
 
-Calculates 32-bit hash, and returns as Buf.
+Calculates 32-bit hash, and returns as Int.
 
-murmurhash3_128(Str $key, uint32 $seed) returns Buf
----------------------------------------------------
+MurmurHash3_32_hex(Str $key, uint32 $seed) returns Buf
+------------------------------------------------------
 
-Calculates 128-bit hash, and returns as Buf.
+Calculates 32-bit hash, and returns as Buf. A hex string can be obtained with `.unpack("H4")`.
+
+murmurhash3_128(Str $key, uint32 $seed) returns Array[Int]
+----------------------------------------------------------
+
+Calculates 128-bit hash, and returns as Array[Int] with length of 4.
+
+murmurhash3_128_hex(Str $key, uint32 $seed) returns Buf
+-------------------------------------------------------
+
+Calculates 128-bit hash, and returns as Buf. A hex string can be obtained with `.unpack("H16")`.
 
 AUTHOR
 ======
