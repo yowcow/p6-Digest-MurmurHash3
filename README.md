@@ -10,9 +10,13 @@ SYNOPSIS
 
     use Digest::MurmurHash3;
 
-    my Buf $buf32 = murmurhash3_32($key, $seed);
+    my Int $uint32 = murmurhash3_32($key, $seed);
 
-    my Buf $buf128 = murmurhash3_128($key, $seed);
+    my Buf $hex8   = murmurhash3_32_hex($key, $seed);
+
+    my Int @uint32 = murmurhash3_128($key, $seed);
+
+    my Buf $hex32  = murmurhash3_128_hex($key, $seed);
 
 DESCRIPTION
 ===========
@@ -27,7 +31,7 @@ murmurhash3_32(Str $key, uint32 $seed) returns Int
 
 Calculates 32-bit hash, and returns as Int.
 
-MurmurHash3_32_hex(Str $key, uint32 $seed) returns Buf
+murmurhash3_32_hex(Str $key, uint32 $seed) returns Buf
 ------------------------------------------------------
 
 Calculates 32-bit hash, and returns as Buf. A hex string can be obtained with `.unpack("H4")`.

@@ -69,9 +69,13 @@ Digest::MurmurHash3 - MurmurHash3 implementation for Perl 6
 
   use Digest::MurmurHash3;
 
-  my Buf $buf32 = murmurhash3_32($key, $seed);
+  my Int $uint32 = murmurhash3_32($key, $seed);
 
-  my Buf $buf128 = murmurhash3_128($key, $seed);
+  my Buf $hex8   = murmurhash3_32_hex($key, $seed);
+
+  my Int @uint32 = murmurhash3_128($key, $seed);
+
+  my Buf $hex32  = murmurhash3_128_hex($key, $seed);
 
 =head1 DESCRIPTION
 
@@ -83,7 +87,7 @@ Digest::MurmurHash3 is a L<MurmurHash3|https://github.com/aappleby/smhasher> has
 
 Calculates 32-bit hash, and returns as Int.
 
-=head2 MurmurHash3_32_hex(Str $key, uint32 $seed) returns Buf
+=head2 murmurhash3_32_hex(Str $key, uint32 $seed) returns Buf
 
 Calculates 32-bit hash, and returns as Buf.
 A hex string can be obtained with `.unpack("H4")`.
