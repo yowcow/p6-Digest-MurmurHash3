@@ -8,12 +8,12 @@ docker-build:
 build:
 	docker run --rm \
 		-v `pwd`:/work \
-		$(DOCKERIMAGE) make all build
+		$(DOCKERIMAGE) make -f dev.mk all build
 
 test:
 	docker run --rm \
 		-v `pwd`:/work \
-		$(DOCKERIMAGE) make all test
+		$(DOCKERIMAGE) make -f dev.mk all test
 
 exec:
 	docker run --rm \
