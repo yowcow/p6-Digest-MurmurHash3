@@ -8,8 +8,6 @@ RUN set -x && \
 
 RUN zef install \
     LibraryMake \
-    NativeCall \
-    Test \
     Test::META
 
 WORKDIR /tmp/work
