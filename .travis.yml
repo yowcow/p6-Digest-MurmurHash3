@@ -6,5 +6,6 @@ install:
   - zef --/test install Test::META
   - zef --/test --deps-only install .
 script:
+  - zef build -v .
   - zef test -v .
 sudo: false
