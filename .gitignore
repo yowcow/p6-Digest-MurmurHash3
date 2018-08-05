@@ -4,3 +4,4 @@
 /.panda-work
 /resources
 .precomp/
+src/Makefile
