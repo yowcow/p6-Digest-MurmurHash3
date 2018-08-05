@@ -51,6 +51,23 @@ AUTHOR
 
 yowcow <yowcow@cpan.org>
 
+INSTALL
+=======
+
+You need a few steps for installation from source:
+
+    zef install --install-deps .
+    
+And then
+
+    perl6 Configure.pl6
+    
+Then 
+
+    make
+    
+
+
 COPYRIGHT AND LICENSE
 =====================
 
