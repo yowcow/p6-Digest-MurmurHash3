@@ -1,7 +1,10 @@
 use v6;
 use experimental :pack;
-use Digest::MurmurHash3;
 use Test;
+
+use lib <t .>;
+
+use Digest::MurmurHash3;
 
 my Str $key  = "hogefugafoobar";
 my Int $seed = 12345678;

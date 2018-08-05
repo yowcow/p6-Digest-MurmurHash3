@@ -10,8 +10,8 @@
     "NativeCall"
   ],
   "description" : "MurmurHash3 implementation for Perl 6",
-  "name" : "Digest::MurmurHash3",
   "license" : "Artistic-2.0",
+  "name" : "Digest::MurmurHash3",
   "perl" : "6.c",
   "provides" : {
     "Digest::MurmurHash3" : "lib/Digest/MurmurHash3.pm6"
@@ -21,10 +21,11 @@
     "libmurmurhash3.dll",
     "libmurmurhash3.so"
   ],
-  "source-url" : "git://github.com/yowcow/p6-Digest-MurmurHash3.git",
+  "source-url" : "https://github.com/yowcow/p6-Digest-MurmurHash3.git",
+  "tags" : [ ],
   "test-depends" : [
     "Test",
     "Test::META"
   ],
-  "version" : "0.1.4"
+  "version" : "0.1.5"
 }

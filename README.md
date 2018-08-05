@@ -46,6 +46,15 @@ murmurhash3_128_hex(Str $key, uint32 $seed) returns Buf
 
 Calculates 128-bit hash, and returns as Buf. A hex string can be obtained with `.unpack("H16")`.
 
+INSTALL
+=======
+
+For installation from source, [zef](https://github.com/ugexe/zef) is required.
+
+    zef build .
+    zef test .
+    zef install .
+
 AUTHOR
 ======
 
@@ -76,3 +85,4 @@ MurmurHash3 was written by [Austin Appleby](https://github.com/aappleby), and is
 Copyright 2016 yowcow
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
+
